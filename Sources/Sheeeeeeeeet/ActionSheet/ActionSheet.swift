@@ -184,7 +184,7 @@ open class ActionSheet: UIViewController {
      */
     public let backgroundView = ActionSheetBackgroundView()
     
-    let stackView = ActionSheetStackView()
+    public let stackView = ActionSheetStackView()
     
     let headerViewContainer = ActionSheetHeaderContainerView()
     var itemsTableView = ActionSheetItemTableView()
