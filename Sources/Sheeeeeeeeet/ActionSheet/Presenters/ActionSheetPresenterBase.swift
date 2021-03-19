@@ -25,12 +25,12 @@ open class ActionSheetPresenterBase: ActionSheetPresenter {
     
     // MARK: - Dependencies
     
-    private let notificationCenter: NotificationCenter
+    public let notificationCenter: NotificationCenter
 
     
     // MARK: - Properties
     
-    var actionSheet: ActionSheet?
+    public var actionSheet: ActionSheet?
     
     public var events = ActionSheetPresenterEvents()
     
@@ -57,14 +57,14 @@ open class ActionSheetPresenterBase: ActionSheetPresenter {
     
     @objc open func handleOrientationChange() {}
     
-    func setupDidEnterBackgroundDetection() {
+    open func setupDidEnterBackgroundDetection() {
         let action = #selector(handleDidEnterBackground)
         let name = UIApplication.didEnterBackgroundNotification
         notificationCenter.removeObserver(self, name: name, object: nil)
         notificationCenter.addObserver(self, selector: action, name: name, object: nil)
     }
     
-    func setupOrientationChangeDetection() {
+    open func setupOrientationChangeDetection() {
         let action = #selector(handleOrientationChange)
         let name = UIApplication.willChangeStatusBarOrientationNotification
         notificationCenter.removeObserver(self, name: name, object: nil)

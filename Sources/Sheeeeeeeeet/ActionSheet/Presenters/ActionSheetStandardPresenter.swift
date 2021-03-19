@@ -27,8 +27,8 @@ open class ActionSheetStandardPresenter: ActionSheetPresenterBase {
     
     public var presentationStyle = PresentationStyle.currentContext
     
-    var animationDelay: TimeInterval = 0
-    var animationDuration: TimeInterval = 0.3
+    public var animationDelay: TimeInterval = 0
+    public var animationDuration: TimeInterval = 0.3
     
     
     // MARK: - Types
@@ -115,33 +115,25 @@ open class ActionSheetStandardPresenter: ActionSheetPresenterBase {
         let animation = { view.alpha = 0 }
         animate(animation)
     }
-}
 
+    // MARK: - Internal Functions
 
-// MARK: - Internal Functions
-
-extension ActionSheetStandardPresenter {
-    
-    func addActionSheetToKeyWindow(_ sheet: ActionSheet) {
+    open func addActionSheetToKeyWindow(_ sheet: ActionSheet) {
         let window = UIApplication.shared.keyWindow
         sheet.view.frame = window?.bounds ?? .zero
         window?.addSubview(sheet.view)
     }
-    
-    func addActionSheet(_ sheet: ActionSheet, to vc: UIViewController) {
+
+    open func addActionSheet(_ sheet: ActionSheet, to vc: UIViewController) {
         if presentationStyle == .keyWindow { return addActionSheetToKeyWindow(sheet) }
         let view = vc.view
         sheet.view.frame = view?.bounds ?? .zero
         view?.addSubview(sheet.view)
     }
-}
 
+    // MARK: - Actions
 
-// MARK: - Actions
-
-@objc public extension ActionSheetStandardPresenter {
-    
-    func backgroundViewTapAction() {
+    @objc open func backgroundViewTapAction() {
         guard let config = actionSheet?.configuration, config.isDismissable else { return }
         events.didDismissWithBackgroundTap?()
         dismiss {}
